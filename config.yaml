@@ -1,0 +1,33 @@
+socket:
+  host: 0.0.0.0
+  port: 8888
+  hololens_port: 8889  # WebSocket端口
+  
+model:
+  path: yolov8n.pt
+  conf_thresh: 0.7
+  nms_thresh: 0.5
+  
+tracking:
+  max_age: 30
+  min_hits: 3
+  
+database:
+  path: ar_data.db
+  
+metrics:
+  port: 8000
+
+ar_assist:
+  product_id: "hololens_assembly_kit"
+  initial_steps:
+    - step_order: 1
+      name: "准备零件A"
+      instruction: "请将零件A放置在标记位置"
+      visual_cue: "highlight_part_a"
+      check_conditions: ["part_a_positioned"]
+    - step_order: 2
+      name: "安装零件B" 
+      instruction: "将零件B对准零件A的卡槽"
+      visual_cue: "show_alignment_guide"
+      check_conditions: ["part_b_aligned"]
